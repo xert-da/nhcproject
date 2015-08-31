@@ -7,10 +7,16 @@ Xert of DA
 var basics = require("./basics.js"),
     irc = require("irc"),
     twitter = require("twitter"),
-    twit = require("./twitter.js");
+    Twit = require("./twitter.js");
 
 
 //twitter stuff
+var tClient = new twitter({
+   consumer_key: Twit.tcKey,
+   consumer_secret: Twit.tcSecret,
+   access_token_key: Twit.atKey,
+   access_token_secret: Twit.atSecret
+});
 
 var tParams = {
     screen_name: "NHC_Atlantic",
@@ -20,7 +26,7 @@ var tParams = {
 } ;
 
 
-
+console.log(Twit.atKey);
 
 // Add StartsWith functionality
 
@@ -99,7 +105,7 @@ bot.addListener("message", function(from, to, text, message){
     {
         console.log(strFrom + ' wants me to give him the latest information from NHC.');
         theText = theText.replace('!latest ', '');
-        tClient.get('statuses/user_timeline', twit.tParams, function(error, tweets, response){
+        tClient.get('statuses/user_timeline', tParams, function(error, tweets, response){
         if (!error)
         {
             var theResult = tweets;
