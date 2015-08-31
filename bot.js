@@ -8,7 +8,8 @@ Xert of DA
 
 */
 
-var basics = require("/basics.js");
+var basics = require("/basics.js"),
+    irc = require("irc");
 
 
 
