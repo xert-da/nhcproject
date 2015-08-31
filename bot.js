@@ -9,7 +9,8 @@ Xert of DA
 */
 
 var basics = require("/basics.js"),
-    irc = require("irc");
+    irc = require("irc"),
+    twitter = require("twitter");
 
 
 
@@ -27,6 +28,16 @@ if (typeof String.prototype.startsWith != 'function') {
 
 
 // Here's the config...
+
+/*
+Channel: NHC
+
+server: DA (DUH...)
+
+username: WeatherGuy
+
+realName: also weatherGuy
+*/
 
 var config = {
     channels: ["#NHC"],
