@@ -104,7 +104,17 @@ bot.addListener("message", function(from, to, text, message){
     
     var strFrom = from.toString();
     
-    if theCommand.startsWith('!latest')
+    var askingforLatest = false;
+    
+    if (theCommand.startsWith('!latest'))
+    {
+        askingforLatest = true;
+    } else if (theText.startsWith('!latest'))
+    {
+        askingforLatest = true;
+    }
+    
+    if (askingforLatest)
     {
         console.log(strFrom + ' wants me to give him the latest information from NHC.');
         theText = theText.replace('!latest ', '');
@@ -115,15 +125,17 @@ bot.addListener("message", function(from, to, text, message){
         
             var theMainTXT = theResult.text;
         
-            bot.say(config.channels[0], strFrom + ': ' + tweets[0].text);
+            bot.say(config.channels[0], 'LATEST REPORT: ' + tweets[0].text);
         }
         else
         {
             console.log(response);
             throw error;
         }
-});
+        });
     }
+
+    
     
     
 
