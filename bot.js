@@ -1,29 +1,16 @@
 /*
 Bot JS
-
-Initial Release
-
+Initial Release 0.0.1 Alpha
 Xert of DA
-
-
 */
 
 var basics = require("./basics.js"),
     irc = require("irc"),
-    twitter = require("twitter");
-
-
-
+    twitter = require("twitter"),
+    twit = require("./twitter.js");
 
 
 //twitter stuff
-
-var tClient = new twitter({
-    consumer_key: "fhnEA93ndvY9d7h56KgQhR7qD",
-    consumer_secret: "wTmlhwiOT71o3H9mhkOiyMfJSKz7x9Dt2zyKaZvux7a7fCMgpf",
-    access_token_key: "3504082167-At8lh18kq9RLfwBCUr47AeOfuk1IGXbPiA7sIMH",
-    access_token_secret: "WaJ4e0Jd1Wh6mqSqEPbugIRWpqlVRdEfXiu1aS657GIZh"
-});
 
 var tParams = {
     screen_name: "NHC_Atlantic",
@@ -86,30 +73,24 @@ var bot = new irc.Client(config.server, config.userName, {
 // On a message, do something or another...
 
 bot.addListener("message", function(from, to, text, message){
-    
     // Sanitize the contents of each value
-    
     //make a local variable out of the messgae's text
     var theText = text.toString();
-    
     //make the message lowercase, so it can be ANyThiNG the stupid user puts in.
-    
     theText = theText.toLowerCase();
-    
-    
     // same comment as above
     var theCommand = text.substr(0, theText.indexOf(' '));
     theCommand = theCommand.toLowerCase();
-    
-    
     var strFrom = from.toString();
+
+    // !latest command
     
     var askingforLatest = false;
-    
     if (theCommand.startsWith('!latest'))
     {
         askingforLatest = true;
-    } else if (theText.startsWith('!latest'))
+    } 
+    else if (theText.startsWith('!latest'))
     {
         askingforLatest = true;
     }
@@ -118,7 +99,7 @@ bot.addListener("message", function(from, to, text, message){
     {
         console.log(strFrom + ' wants me to give him the latest information from NHC.');
         theText = theText.replace('!latest ', '');
-        tClient.get('statuses/user_timeline', tParams, function(error, tweets, response){
+        tClient.get('statuses/user_timeline', twit.tParams, function(error, tweets, response){
         if (!error)
         {
             var theResult = tweets;
@@ -134,11 +115,5 @@ bot.addListener("message", function(from, to, text, message){
         }
         });
     }
-
-    
-    
-    
-
-
 
 });
