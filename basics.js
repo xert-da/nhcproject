@@ -1,0 +1,7 @@
+/*
+
+basics.js
+
+includes basic functionality for some stuff. 
+
+*/
