@@ -8,7 +8,7 @@ Xert of DA
 
 */
 
-var basics = require("/basics.js"),
+var basics = require("./basics.js"),
     irc = require("irc"),
     twitter = require("twitter");
 
@@ -27,7 +27,7 @@ if (typeof String.prototype.startsWith != 'function') {
 // Let's start defining the IRC Bot
 
 
-// Here's the config...
+// Here's the irc config...
 
 /*
 Channel: NHC
@@ -38,6 +38,8 @@ username: WeatherGuy
 
 realName: also weatherGuy
 */
+
+
 
 var config = {
     channels: ["#NHC"],
