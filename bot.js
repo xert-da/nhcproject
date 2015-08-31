@@ -29,7 +29,7 @@ if (typeof String.prototype.startsWith != 'function') {
 // Here's the config...
 
 var config = {
-    channels: ["#digitaladdiction"],
+    channels: ["#NHC"],
     server: "irc.digitaladdiction.info",
     userName: "WeatherGuy",
     realName: "WeatherGuy",
