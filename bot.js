@@ -22,11 +22,8 @@ var tParams = {
     screen_name: "NHC_Atlantic",
     count: 1,
     include_rts: false,
-    
 } ;
 
-
-console.log(Twit.atKey);
 
 // Add StartsWith functionality
 
@@ -89,22 +86,10 @@ bot.addListener("message", function(from, to, text, message){
     theCommand = theCommand.toLowerCase();
     var strFrom = from.toString();
 
-    // !latest command
-    
-    var askingforLatest = false;
-    if (theCommand.startsWith('!latest'))
-    {
-        askingforLatest = true;
-    } 
-    else if (theText.startsWith('!latest'))
-    {
-        askingforLatest = true;
-    }
-    
-    if (askingforLatest)
+    // latest command
+    if (theText.startsWith('!latest'))
     {
         console.log(strFrom + ' wants me to give him the latest information from NHC.');
-        theText = theText.replace('!latest ', '');
         tClient.get('statuses/user_timeline', tParams, function(error, tweets, response){
         if (!error)
         {
@@ -121,5 +106,7 @@ bot.addListener("message", function(from, to, text, message){
         }
         });
     }
+    
+    
 
 });
