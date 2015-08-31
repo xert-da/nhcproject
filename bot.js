@@ -14,6 +14,27 @@ var basics = require("./basics.js"),
 
 
 
+
+
+//twitter stuff
+
+var tClient = new twitter({
+    consumer_key: "fhnEA93ndvY9d7h56KgQhR7qD",
+    consumer_secret: "wTmlhwiOT71o3H9mhkOiyMfJSKz7x9Dt2zyKaZvux7a7fCMgpf",
+    access_token_key: "3504082167-At8lh18kq9RLfwBCUr47AeOfuk1IGXbPiA7sIMH",
+    access_token_secret: "WaJ4e0Jd1Wh6mqSqEPbugIRWpqlVRdEfXiu1aS657GIZh"
+});
+
+var tParams = {
+    screen_name: "NHC_Atlantic",
+    count: 1,
+    include_rts: false,
+    
+} ;
+
+
+
+
 // Add StartsWith functionality
 
 if (typeof String.prototype.startsWith != 'function') {
@@ -82,6 +103,27 @@ bot.addListener("message", function(from, to, text, message){
     
     
     var strFrom = from.toString();
+    
+    if theCommand.startsWith('!latest')
+    {
+        console.log(strFrom + ' wants me to give him the latest information from NHC.');
+        theText = theText.replace('!latest ', '');
+        tClient.get('statuses/user_timeline', tParams, function(error, tweets, response){
+        if (!error)
+        {
+            var theResult = tweets;
+        
+            var theMainTXT = theResult.text;
+        
+            bot.say(config.channels[0], strFrom + ': ' + tweets[0].text);
+        }
+        else
+        {
+            console.log(response);
+            throw error;
+        }
+});
+    }
     
     
 

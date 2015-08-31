@@ -12,12 +12,21 @@ var tClient = new twitter({
     access_token_secret: "WaJ4e0Jd1Wh6mqSqEPbugIRWpqlVRdEfXiu1aS657GIZh"
 });
 
-var tParams = {screen_name: "NHC_Atlantic"} ;
+var tParams = {
+    screen_name: "NHC_Atlantic",
+    count: 1,
+    include_rts: false,
+    
+} ;
 
 tClient.get('statuses/user_timeline', tParams, function(error, tweets, response){
     if (!error)
     {
-        console.log(tweets);
+        var theResult = tweets;
+        
+        var theMainTXT = theResult.text;
+        
+        console.log(tweets[0].text);
     }
     else
     {
