@@ -1,13 +1,15 @@
 /*
 Bot JS
-Initial Release 0.0.3 Alpha
+Initial Release 0.0.4 Alpha
 Xert of DA
+
+0.0.5 - stream works every minute
+
 */
 
 var basics = require("./basics.js"),
     irc = require("irc"),
-    twitjs = require('./twitterjs.js'),
-    theStream = require("./stream.js");
+    twitjs = require('./twitterjs.js');
 
 
 
@@ -20,6 +22,10 @@ if (typeof String.prototype.startsWith != 'function') {
     return this.indexOf(str) === 0;
   };
 }
+
+
+
+
 
 
 // Let's start defining the IRC Bot
@@ -88,23 +94,13 @@ bot.addListener("message", function(from, to, text, message){
 
 // Streaming bit
 
-//declare length
-var twoMinutes = 2 * 60 * 100;
 
 //declare empty base
 var baseMessage = '';
 
 
-//get it the first time, won't run more than once. 
-twitjs.getCurrent(function(data){
-    bot.say(config.channels[0], 'LATEST REPORT: ' + data);
-    baseMessage = data;  
-});
-
-
 
 //Get new post every two minutes
-
 setInterval(function(){
     
     //localize the base message
@@ -128,5 +124,5 @@ setInterval(function(){
          }
    });
    
-   //every two minutes
-}, twoMinutes);
+   //every one minute (in milliseconds)
+}, 60000);

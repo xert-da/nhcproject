@@ -3,8 +3,8 @@ Everything twitter.
 
 twitterjs.js
 
+0.0.5 - stream works every minute
 
-0.0.4 - Added interval for new posts
 
 Xert of DigitalAddiction
 */

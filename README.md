@@ -13,4 +13,7 @@ Written BY Xert (Alec G) of DigitalAddiction
 
 0.0.4 - Added interval for new posts (stream every 2 minutes)
 
+0.0.5 - stream works every minute
+
+
 

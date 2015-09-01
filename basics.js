@@ -5,7 +5,7 @@ basics.js
 includes basic functionality for some stuff. 
 
 
-0.0.4 - Added interval for new posts
+0.0.5 - stream works every minute
 
 */
 

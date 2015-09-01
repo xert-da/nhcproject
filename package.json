@@ -1,6 +1,6 @@
 {
   "name": "nhcproject",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "DigitalAddiction project",
   "main": "bot.js",
   "scripts": {
