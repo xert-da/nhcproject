@@ -1,6 +1,6 @@
 /*
 Bot JS
-Initial Release 0.0.1 Alpha
+Initial Release 0.0.2 Alpha
 Xert of DA
 */
 
@@ -43,7 +43,7 @@ if (typeof String.prototype.startsWith != 'function') {
 /*
 Channel: NHC
 
-server: DA (DUH...)
+server: DigitalAddiction (DUH...)
 
 username: WeatherGuy
 
@@ -51,7 +51,7 @@ realName: also weatherGuy
 */
 
 
-
+// No SSL :o
 var config = {
     channels: ["#NHC"],
     server: "irc.digitaladdiction.info",
@@ -110,3 +110,5 @@ bot.addListener("message", function(from, to, text, message){
     
 
 });
+
+Twit.stream('statuses/filter'), 

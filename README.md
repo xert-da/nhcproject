@@ -8,5 +8,6 @@ Written in nodeJS
 Written BY Xert (Alec G) of DigitalAddiction
 
 
-Commits 1-3 are crap. Don't mind them. :)
+0.0.2 - !latest works 
+
 

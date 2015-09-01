@@ -1,6 +1,6 @@
 {
   "name": "nhcproject",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "DigitalAddiction project",
   "main": "bot.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/xert-da/nhcproject.git"
   },
-  "author": "",
+  "author": "Xert of DigitalAddiction",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/xert-da/nhcproject/issues"

@@ -4,6 +4,8 @@ basics.js
 
 includes basic functionality for some stuff. 
 
+0.0.2
+
 */
 
 
