@@ -8,6 +8,9 @@ Written in nodeJS
 Written BY Xert (Alec G) of DigitalAddiction
 
 
-0.0.2 - !latest works 
+0.0.3 - !latest works 
+
+
+0.0.4 - Added interval for new posts (stream every 2 minutes)
 
 

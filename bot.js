@@ -1,28 +1,15 @@
 /*
 Bot JS
-Initial Release 0.0.2 Alpha
+Initial Release 0.0.3 Alpha
 Xert of DA
 */
 
 var basics = require("./basics.js"),
     irc = require("irc"),
-    twitter = require("twitter"),
-    Twit = require("./twitter.js");
+    twitjs = require('./twitterjs.js'),
+    theStream = require("./stream.js");
 
 
-//twitter stuff
-var tClient = new twitter({
-   consumer_key: Twit.tcKey,
-   consumer_secret: Twit.tcSecret,
-   access_token_key: Twit.atKey,
-   access_token_secret: Twit.atSecret
-});
-
-var tParams = {
-    screen_name: "NHC_Atlantic",
-    count: 1,
-    include_rts: false,
-} ;
 
 
 // Add StartsWith functionality
@@ -41,7 +28,7 @@ if (typeof String.prototype.startsWith != 'function') {
 // Here's the irc config...
 
 /*
-Channel: NHC
+Channel: #NHC
 
 server: DigitalAddiction (DUH...)
 
@@ -67,14 +54,14 @@ var bot = new irc.Client(config.server, config.userName, {
     userName: config.userName,
     floodProtection: true
     });
-    
-    
+
+
+
 // TODO: Add realtime functionality
 
 
 
 // On a message, do something or another...
-
 bot.addListener("message", function(from, to, text, message){
     // Sanitize the contents of each value
     //make a local variable out of the messgae's text
@@ -90,25 +77,56 @@ bot.addListener("message", function(from, to, text, message){
     if (theText.startsWith('!latest'))
     {
         console.log(strFrom + ' wants me to give him the latest information from NHC.');
-        tClient.get('statuses/user_timeline', tParams, function(error, tweets, response){
-        if (!error)
-        {
-            var theResult = tweets;
-        
-            var theMainTXT = theResult.text;
-        
-            bot.say(config.channels[0], 'LATEST REPORT: ' + tweets[0].text);
-        }
-        else
-        {
-            console.log(response);
-            throw error;
-        }
+        twitjs.getCurrent(function(data){
+            bot.say(config.channels[0], 'LATEST REPORT: ' + data);
         });
     }
-    
-    
-
 });
 
-Twit.stream('statuses/filter'), 
+
+
+
+// Streaming bit
+
+//declare length
+var twoMinutes = 2 * 60 * 100;
+
+//declare empty base
+var baseMessage = '';
+
+
+//get it the first time, won't run more than once. 
+twitjs.getCurrent(function(data){
+    bot.say(config.channels[0], 'LATEST REPORT: ' + data);
+    baseMessage = data;  
+});
+
+
+
+//Get new post every two minutes
+
+setInterval(function(){
+    
+    //localize the base message
+    var baseMessageC = baseMessage;
+    
+    //get current info
+    twitjs.getCurrent(function(data){
+        
+         //if identical, pass
+         if (baseMessageC == data)
+         {
+             console.log('Nothing new to report.');
+         }
+         
+         //else raise an event, and assign baseMessage to the newest data.
+         else
+         {
+             console.log('Something new to report.');
+             baseMessage = data;
+             bot.say(config.channels[0], 'LATEST REPORT: ' + data);
+         }
+   });
+   
+   //every two minutes
+}, twoMinutes);

@@ -4,9 +4,12 @@ basics.js
 
 includes basic functionality for some stuff. 
 
-0.0.2
+
+0.0.4 - Added interval for new posts
 
 */
+
+
 
 
 // Add Round functionality
@@ -23,3 +26,4 @@ function round(value)
     value = value.toString().split('e');
    
 }
+
